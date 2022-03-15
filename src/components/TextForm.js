@@ -6,18 +6,25 @@ export default function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert('Converted to UpperCase', 'success')
   };
   const handleLoClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert('Converted to LowerCase', 'success')
+
   };
   const handleOnClear = () => {
     let newText = ``;
     setText(newText);
+    props.showAlert('All Text Cleared', 'success')
+
   };
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert('Removed Extra Spaces', 'success')
+
   };
   const handleUpChange = (event) => {
     setText(event.target.value);
@@ -54,7 +61,7 @@ export default function TextForm(props) {
       <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
         <h2>Your Text Summary</h2>
         <p>
-          {text.split(" ").length} Words and {text.length} Characters
+          {text.length > 0 ? text.trim().split(" ").length : 0} Words and {text.length} Characters
         </p>
         <p>{0.08 * text.split(" ").length} Min to read.</p>
         <h2>Preview</h2>
