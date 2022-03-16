@@ -45,25 +45,25 @@ export default function TextForm(props) {
             rows="8"
           ></textarea>
         </div>
-        <button className="btn btn-primary  mx-1" onClick={handleUpClick}>
+        <button className="btn btn-primary  mx-1 my-1" disabled={text.length === 0} onClick={handleUpClick}>
           Convert to UpperCase
         </button>
-        <button className="btn btn-primary  mx-1" onClick={handleLoClick}>
+        <button className="btn btn-primary  mx-1 my-1" disabled={text.length === 0} onClick={handleLoClick}>
           Convert to LowerCase
         </button>
-        <button className="btn btn-primary  mx-1" onClick={handleOnClear}>
+        <button className="btn btn-primary  mx-1 my-1" disabled={text.length === 0} onClick={handleOnClear}>
           Clear Text
         </button>
-        <button className="btn btn-primary  mx-1" onClick={handleExtraSpaces}>
+        <button className="btn btn-primary  mx-1 my-1" disabled={text.length === 0} onClick={handleExtraSpaces}>
           Remove extra Spaces
         </button>
       </div>
       <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
         <h2>Your Text Summary</h2>
         <p>
-          {text.length > 0 ? text.trim().split(" ").length : 0} Words and {text.length} Characters
+          {text.split(" ").filter((element) => { return element.length !== 0 }).length} Words and {text.length} Characters
         </p>
-        <p>{0.08 * text.split(" ").length} Min to read.</p>
+        <p>{0.08 * text.split(" ").filter((element) => { return element.length !== 0 }).length} Min to read.</p>
         <h2>Preview</h2>
         <p>{text.length > 0 ? text : 'Enter Something In The Above Text-box To Prewiew It here..'}</p>
       </div>
